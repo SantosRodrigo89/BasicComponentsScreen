@@ -3,6 +3,7 @@ package br.com.fiap.basiccomponentsscreen
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -11,16 +12,22 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.RadioButton
+import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -206,6 +213,58 @@ fun BasicComponentsScreen() {
                 text = "Kotlin",
                 color = Color.White
             )
+        }
+        Spacer(modifier = Modifier.height(16.dp))
+
+        var selecionado = remember {
+            mutableStateOf(0)
+         }
+
+        Row(modifier = Modifier.fillMaxWidth()) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                RadioButton(
+                    selected = selecionado.value == 0,
+                    onClick = { selecionado.value = 0 },
+                    colors = RadioButtonDefaults.colors(
+                        selectedColor = Color.White,
+                        unselectedColor = Color(0xffed145b)
+                    )
+                )
+                Text(text = "MacOs", color = Color.White)
+            }
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                RadioButton(
+                    selected = selecionado.value == 1,
+                    onClick = { selecionado.value = 1 },
+                    colors = RadioButtonDefaults.colors(
+                        selectedColor = Color.White,
+                        unselectedColor = Color(0xffed145b)
+                    )
+                )
+                Text(text = "GNU/Linux", color = Color.White)
+            }
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                RadioButton(
+                    selected = selecionado.value == 2,
+                    onClick = { selecionado.value = 2 },
+                    colors = RadioButtonDefaults.colors(
+                        selectedColor = Color.White,
+                        unselectedColor = Color(0xffed145b)
+                    )
+                )
+                Text(text = "Windows 11", color = Color.White)
+            }
+        }
+        Button(
+            onClick = { cidade.value = "EAD"},
+            modifier = Modifier.size(width = 200.dp, height = 60.dp),
+            colors = ButtonDefaults.buttonColors(containerColor = Color.Magenta),
+            border = BorderStroke(width = 3.dp, color = Color.White)
+        ) {
+            Text(text = "Clique aqui!")
+        }
+        OutlinedButton(onClick = { cidade.value = "" }) {
+            Text(text = "Outro botão")
         }
     }
 }
